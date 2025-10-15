@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-xcod-sck
+      data-utmify-prevent-subids
+      async
+      defer
+    ></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Minha Coroa</title>
+
+    <style>
+      html,
+      body {
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #ff4300, #ff4300);
+  font-family: sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* mudou para topo */
+  overflow-y: auto; /* permite rolagem */
+}
+
+.container {
+  background-color: white;
+  border-radius: 25px;
+  padding: 25px;
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  
+}
+
+
+      .photo-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin: 20px 0;
+      }
+
+      .photo-box {
+        width: 100px;
+        height: 100px;
+        border: 2px dashed #a3a3a3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .photo-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+      }
+
+      .photo-box span {
+        font-size: 24px;
+        color: #a3a3a3;
+        position: absolute;
+        z-index: 1;
+      }
+
+      .interests {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .interest {
+        padding: 10px;
+        border-radius: 20px;
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+      }
+
+      .selected {
+        background-color: #ff4300;
+      }
+
+      .button {
+        padding: 10px 20px;
+        background-color: #a33edc;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+      }
+
+      textarea {
+        border: 2px solid #e6331c;
+        transition: border-color 0.3s ease;
+        width: 90%;
+        border-radius: 10px;
+        font-size: 16px;
+        padding: 10px;
+      }
+
+      textarea:focus {
+        border: solid 3px #ff4300;
+        outline: none;
+      }
+    </style>
+
+    <script src="../utm.js"></script>
+  </head>
+
+  <body>
+    <div
+      class="container"
+    >
+      <img src="../cadastro/logoQuente.svg" alt="" width="120px" />
+      <h2 style="margin: 0px">Adicione suas fotos</h2>
+      <p style="margin: 0px">
+        Membros com 3 fotos encontram seus matches mais rápido
+      </p>
+      <div class="photo-container">
+        <div class="photo-box" onclick="addPhoto(0)">
+          <span
+            style="
+              background: linear-gradient(45deg, #bd2a16, #ff4300, #bd2a16);
+              color: white;
+              border-radius: 100%;
+              padding: 0px 9px;
+            "
+            >+</span
+          >
+        </div>
+        <div class="photo-box" onclick="addPhoto(1)">
+          <span
+            style="
+              background: linear-gradient(45deg, #bd2a16, #ff4300, #bd2a16);
+              color: white;
+              border-radius: 100%;
+              padding: 0px 9px;
+            "
+            >+</span
+          >
+        </div>
+        <div class="photo-box" onclick="addPhoto(2)">
+          <span
+            style="
+              background: linear-gradient(45deg, #bd2a16, #ff4300, #bd2a16);
+              color: white;
+              border-radius: 100%;
+              padding: 0px 9px;
+            "
+            >+</span
+          >
+        </div>
+      </div>
+      <input
+        type="file"
+        id="photo-input"
+        style="display: none"
+        accept="image/*"
+        onchange="previewPhoto()"
+      />
+
+      <h3 style="font-size: 23px">Escreva sua bio:</h3>
+      <textarea
+        id="mensagem"
+        name="mensagem"
+        rows="5"
+        cols="50"
+        placeholder="Escreva sua bio aqui..."
+      ></textarea>
+
+      <h3 style="font-size: 23px">Selecione seus interesses:</h3>
+      <div class="interests">
+        <div class="interest" onclick="toggleInterest(this)">Cozinhar</div>
+        <div class="interest" onclick="toggleInterest(this)">Música</div>
+        <div class="interest" onclick="toggleInterest(this)">Academia</div>
+
+        <div class="interest" onclick="toggleInterest(this)">
+          Filmes & Séries
+        </div>
+        <div class="interest" onclick="toggleInterest(this)">Ler livros</div>
+        <div class="interest" onclick="toggleInterest(this)">Astrologia</div>
+        <div class="interest" onclick="toggleInterest(this)">
+          Comida & Bebida
+        </div>
+        <div class="interest" onclick="toggleInterest(this)">Tecnologia</div>
+        <div class="interest" onclick="toggleInterest(this)">Natureza</div>
+      </div>
+      <button
+        style="
+          background: linear-gradient(to right, #ff4300, #e6331c);
+          color: white;
+          padding: 10px 80px;
+          border: none;
+          border-radius: 20px;
+          font-weight: bold;
+          margin-top: 15px;
+          font-size: 17px;
+        "
+        id="meubotao"
+      >
+        Continuar
+      </button>
+
+      <script>
+        let photos = [null, null, null]; // Array para armazenar as fotos (0, 1, 2)
+        let currentPhotoIndex = 0; // Variável para armazenar o índice da foto atual sendo adicionada
+
+        function addPhoto(index) {
+          currentPhotoIndex = index; // Guarda o índice para uso posterior
+          document.getElementById("photo-input").click(); // Abre o seletor de arquivos
+        }
+
+        function previewPhoto() {
+          const input = document.getElementById("photo-input");
+          if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              compressAndSaveImage(e.target.result, currentPhotoIndex);
+            };
+            reader.readAsDataURL(input.files[0]);
+          }
+        }
+
+        function compressAndSaveImage(imageSrc, index) {
+          const img = new Image();
+          img.src = imageSrc;
+          img.onload = function () {
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+            const maxSize = 300; // Redimensiona para no máximo 300px
+            let width = img.width;
+            let height = img.height;
+
+            if (width > height) {
+              if (width > maxSize) {
+                height *= maxSize / width;
+                width = maxSize;
+              }
+            } else {
+              if (height > maxSize) {
+                width *= maxSize / height;
+                height = maxSize;
+              }
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+            ctx.drawImage(img, 0, 0, width, height);
+
+            const compressedImage = canvas.toDataURL("image/jpeg", 0.7); // Compacta para JPEG (70%)
+
+            // Atualiza a caixa de foto com o índice correto
+            document.querySelectorAll(".photo-box")[
+              index
+            ].innerHTML = `<img src="${compressedImage}" onclick="removePhoto(${index})">`;
+
+            photos[index] = compressedImage; // Armazena a foto na posição correta do array
+
+            // Armazena no localStorage (mantém apenas a primeira foto no localStorage para compatibilidade)
+            if (index === 0) {
+              localStorage.setItem("profilePhoto", compressedImage);
+            }
+
+            // Também armazena todas as fotos em um array no localStorage
+            localStorage.setItem("allProfilePhotos", JSON.stringify(photos));
+          };
+        }
+
+        function removePhoto(index) {
+          document.querySelectorAll(".photo-box")[
+            index
+          ].innerHTML = `<span style="background: linear-gradient(45deg, #8319C1,#b941ff, #8319C1); color: white; border-radius: 100%; padding: 0px 9px;">+</span>`;
+          photos[index] = null; // Remove a foto da posição do array
+
+          if (index === 0) {
+            localStorage.removeItem("profilePhoto"); // Remove do localStorage se for a posição 0
+          }
+
+          // Atualiza o array de fotos no localStorage
+          localStorage.setItem("allProfilePhotos", JSON.stringify(photos));
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+          // Recuperar fotos do localStorage, se houver
+          const savedPhotos = localStorage.getItem("allProfilePhotos");
+          if (savedPhotos) {
+            const parsedPhotos = JSON.parse(savedPhotos);
+            // Atualiza o array local
+            photos = parsedPhotos;
+
+            // Atualiza a interface com as fotos salvas
+            photos.forEach((photo, index) => {
+              if (photo) {
+                document.querySelectorAll(".photo-box")[
+                  index
+                ].innerHTML = `<img src="${photo}" onclick="removePhoto(${index})">`;
+              }
+            });
+          }
+
+          const botao = document.querySelector("#meubotao");
+          botao.addEventListener("click", () => {
+            if (!botao.disabled) {
+              // Verifica se pelo menos uma posição tem uma foto
+              if (photos.some((photo) => photo !== null)) {
+                // Se pelo menos uma posição tiver foto, passa para a próxima página
+                // Armazena todas as fotos para envio
+                localStorage.setItem(
+                  "allProfilePhotos",
+                  JSON.stringify(photos)
+                );
+
+                // Mantém a compatibilidade com o código existente
+                if (photos[0]) {
+                  localStorage.setItem("photoToSend", photos[0]);
+                }
+
+                // Chama a função do arquivo utm.js
+                const url = "../curtidas/index.html";
+                console.log("Redirecionando para:", url);
+
+                // Obter os parâmetros UTM da URL atual
+                const urlParams = new URLSearchParams(window.location.search);
+                const utmTags = [
+                  "utm_source",
+                  "utm_medium",
+                  "utm_campaign",
+                  "utm_term",
+                  "utm_content",
+                ];
+
+                // Criar nova URL com os parâmetros UTM
+                let finalUrl = url;
+                let hasUtm = false;
+
+                // Adicionar ? se não existir na URL
+                if (!finalUrl.includes("?")) {
+                  finalUrl += "?";
+                } else {
+                  finalUrl += "&";
+                }
+
+                // Adicionar os parâmetros UTM
+                utmTags.forEach((tag) => {
+                  const value = urlParams.get(tag);
+                  if (value) {
+                    finalUrl += `${tag}=${encodeURIComponent(value)}&`;
+                    // Salvar no sessionStorage também
+                    sessionStorage.setItem(tag, value);
+                    hasUtm = true;
+                  } else {
+                    // Tentar recuperar do sessionStorage
+                    const storedValue = sessionStorage.getItem(tag);
+                    if (storedValue) {
+                      finalUrl += `${tag}=${encodeURIComponent(storedValue)}&`;
+                      hasUtm = true;
+                    }
+                  }
+                });
+
+                // Remover o último & se existir
+                if (finalUrl.endsWith("&")) {
+                  finalUrl = finalUrl.slice(0, -1);
+                }
+                // Remover o ? se não houver parâmetros
+                if (finalUrl.endsWith("?")) {
+                  finalUrl = finalUrl.slice(0, -1);
+                }
+
+                console.log("URL final com parâmetros UTM:", finalUrl);
+                window.location.href = finalUrl;
+              } else {
+                alert("Por favor, adicione pelo menos uma foto.");
+              }
+            }
+          });
+        });
+
+        function toggleInterest(element) {
+          element.classList.toggle("selected");
+        }
+      </script>
+
+      <style>
+        /* Estilização geral dos inputs */
+        .input-container {
+          margin-bottom: 10px;
+          position: relative;
+          padding: 0px 20px;
+        }
+
+        .input-container input {
+          width: 80%;
+          padding: 10px 10px 10px 40px;
+          /* Espaço para o ícone */
+          font-size: 16px;
+          border: solid 1px #c9c9c9;
+          border-radius: 0px 20px 20px 0px;
+          border-left: solid 3px #8319c1;
+          color: #333;
+          font-family: "Poppins", sans-serif;
+          background: #fff;
+          background-repeat: no-repeat;
+          background-position: 10px center;
+          background-size: 20px;
+        }
+
+        /* Ícones específicos para cada input usando IDs */
+        #usuario {
+          background-image: url("user.png");
+          /* Ícone de usuário */
+        }
+
+        #email {
+          background-image: url("email.png");
+          /* Ícone de e-mail */
+        }
+
+        #pix {
+          background-image: url("pix-svgrepo-com.svg");
+          /* Ícone de chave Pix */
+        }
+
+        #senha {
+          background-image: url("padlock.png");
+          /* Ícone de senha */
+        }
+
+        #confirmar-senha {
+          background-image: url("padlock.png");
+          /* Ícone de confirmar senha */
+        }
+
+        input.erro {
+          border-color: red;
+          background-color: #ffe6e6;
+        }
+
+        button.habilitado {
+          opacity: 1;
+          cursor: pointer;
+        }
+      </style>
+
+      <br />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contatos</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-xcod-sck
+      data-utmify-prevent-subids
+      async
+      defer
+    ></script>
+    <script src="../utm.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        background: linear-gradient(to top, #a01c1c, #c75021, #fe7735);
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 0px 0px;
+      }
+
+      .container {
+        width: 95%;
+        max-width: 500px;
+        border-radius: 10px;
+        position: relative;
+        min-height: 100vh;
+        color: rgb(107, 107, 107);
+        margin: 0 auto;
+        padding-top: 70px;
+        /* Space for header */
+        padding-bottom: 20px;
+      }
+
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: white !important;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 16px;
+        z-index: 1000;
+        max-width: 500px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 0 0 15px 15px;
+      }
+
+      .header img.logo {
+        height: 30px;
+        margin-left: 0px;
+      }
+
+      .header-icons {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-right: 10px;
+      }
+
+      .header-icons .icon-btn {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .header-icons .icon-btn span {
+        font-size: 14px;
+        font-weight: bold;
+        background-color: #e6331c;
+        border-radius: 50%;
+        padding: 2px 6px;
+        min-width: 18px;
+        text-align: center;
+        line-height: 1;
+      }
+
+      /* Page Title */
+      .page-title {
+        color: white;
+        text-align: center;
+        margin: 10px 0 20px;
+        font-size: 24px;
+        font-weight: 600;
+      }
+
+      /* Empty State */
+      .empty-state {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        padding: 40px 20px;
+        margin-top: 50px;
+      }
+
+      .empty-state img {
+        width: 80px;
+        margin-bottom: 20px;
+        opacity: 0.8;
+      }
+
+      .empty-state h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      .empty-state p {
+        font-size: 15px;
+        opacity: 0.8;
+        max-width: 300px;
+        line-height: 1.5;
+      }
+
+      .empty-state button {
+        background: linear-gradient(to right, #420079, #ae00ff);
+        color: white;
+        border: none;
+        border-radius: 30px;
+        padding: 12px 30px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+
+      /* Contact List */
+      .contact-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 0 10px;
+      }
+
+      .contact-card {
+        background-color: #ffffff;
+        border-radius: 15px;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        color: rgb(0, 0, 0);
+        cursor: pointer;
+        position: relative;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .contact-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .contact-card.highlighted {
+        border: 2px solid #ff64c5;
+        animation: pulse 1.5s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(255, 100, 197, 0.7);
+        }
+
+        70% {
+          box-shadow: 0 0 0 10px rgba(255, 100, 197, 0);
+        }
+
+        100% {
+          box-shadow: 0 0 0 0 rgba(255, 100, 197, 0);
+        }
+      }
+
+      .contact-photo {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 15px;
+        border: 2px solid #e6331c;
+      }
+
+      .contact-info {
+        flex: 1;
+      }
+
+      .contact-name {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .contact-status {
+        font-size: 12px;
+        color: #aaa;
+      }
+
+      .notification-badge {
+        background-color: #4caf50;
+        color: white;
+        border-radius: 50%;
+        width: 22px;
+        height: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      /* Chat Page */
+      .chat-container {
+        display: none;
+        /* Hidden by default */
+        flex-direction: column;
+        height: 100%;
+        padding-top: 60px;
+        /* Space for header */
+      }
+
+      .chat-header {
+        background-color: #ffffff;
+        padding: 10px 15px;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #444;
+      }
+
+      .back-button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        margin-right: 15px;
+        cursor: pointer;
+      }
+
+      .chat-contact-info {
+        display: flex;
+        align-items: center;
+      }
+
+      .chat-contact-photo {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 10px;
+      }
+
+      .chat-contact-details {
+        color: white;
+      }
+
+      .chat-contact-name {
+        font-weight: 600;
+        font-size: 16px;
+      }
+
+      .chat-contact-status {
+        font-size: 12px;
+        color: #aaa;
+      }
+
+      .chat-messages {
+        flex: 1;
+        padding: 15px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+
+      .message {
+        max-width: 80%;
+        padding: 10px 15px;
+        border-radius: 18px;
+        font-size: 14px;
+        position: relative;
+      }
+
+      .message-received {
+        background-color: #f1f1f1;
+        color: rgb(68, 68, 68);
+        align-self: flex-start;
+        border-bottom-left-radius: 5px;
+      }
+
+      .message-sent {
+        background-color: #e6622d;
+        color: white;
+        align-self: flex-end;
+        border-bottom-right-radius: 5px;
+      }
+
+      .message-time {
+        font-size: 10px;
+        opacity: 0.7;
+        margin-top: 5px;
+        text-align: right;
+      }
+
+      .chat-input-area {
+        display: flex;
+        padding: 10px;
+        background-color: #ffffff;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .chat-input {
+        flex: 1;
+        padding: 12px 15px;
+        border-radius: 20px;
+        border: none;
+        background-color: #c7502117;
+        color: rgb(0, 0, 0);
+        font-size: 14px;
+        border: solid 1px #c75021;
+      }
+
+      .send-button {
+        background-color: #c75021;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      /* Premium Popup */
+      .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+        display: none;
+        /* Hidden by default */
+        justify-content: center;
+        align-items: center;
+        z-index: 1001;
+      }
+
+      .popup {
+        background-color: #252525;
+        color: white;
+        padding: 25px 20px;
+        border-radius: 15px;
+        text-align: center;
+        width: 90%;
+        max-width: 380px;
+        box-shadow: 0 0 20px #8319c1;
+        border: 1px solid #8319c1;
+        position: relative;
+      }
+
+      .popup-title {
+        font-size: 22px;
+        margin-bottom: 15px;
+        color: #ff64c5;
+        font-weight: bold;
+      }
+
+      .popup p {
+        font-size: 15px;
+        margin-bottom: 20px;
+        line-height: 1.4;
+      }
+
+      .popup-button {
+        background: linear-gradient(to right, #420079, #ae00ff);
+        color: white;
+        border: none;
+        border-radius: 30px;
+        padding: 12px 0;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header">
+      <img src="logoCompleta.svg" alt="Logo" class="logo" />
+      <div class="header-icons">
+        <button class="icon-btn" id="likes-btn"
+        onclick="window.location.href='index.html'">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="24"
+            viewBox="0 0 20 24"
+            fill="none"
+
+          >
+            <path
+              d="M9.99896 24H9.94196C4.46053 24 0 19.516 0 14.0045C0 12.0763 0.665931 9.93627 1.8738 7.97614C2.34476 7.21149 3.24666 6.85065 4.11457 7.08054C4.98348 7.30944 5.58842 8.0671 5.61941 8.9647C5.7154 11.7035 6.37233 14.976 8.95706 15.005C10.038 15.014 10.8939 14.2583 10.9839 13.2788C11.0778 12.2532 10.7069 11.4496 10.2379 10.433C9.68599 9.23358 8.99806 7.74225 8.99806 5.53423C8.99806 3.82799 9.34302 2.12375 9.68499 1.19117C9.93996 0.498479 10.5409 0.0436813 11.2548 0.00269961C11.9937 -0.0372826 12.6687 0.369536 13.0076 1.04424C13.8096 2.63852 14.9454 4.11187 16.0433 5.53723C18.0151 8.09809 20.0539 10.7459 19.9989 14.0204C19.9989 19.482 15.5164 23.966 10.006 23.999H9.99996L9.99896 24Z"
+              fill="url(#paint0_linear_8_99)"
+            />
+            <defs>
+              <linearGradient
+                id="paint0_linear_8_99"
+                x1="10"
+                y1="0"
+                x2="10"
+                y2="24"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="#FE7735" />
+                <stop offset="1" stop-color="#EF0E0E" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <span
+            id="like-count"
+            style="
+              margin-left: -13px;
+              margin-bottom: -21px;
+              border: solid 2px white;
+              font-size: 12px;
+              padding: 1px 2px;
+              font-weight: 300;
+              box-shadow: none;
+              background-color: #ff2727 !important;
+            "
+            >10</span
+          >
+        </button>
+        <button
+          class="icon-btn"
+          id="matches-btn"
+          onclick="window.location.href='contatos.html'"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M23.9763 11.2593C23.8318 8.92177 23.0064 6.67759 21.6019 4.80345C20.1974 2.9293 18.2752 1.50713 16.0722 0.712258C13.8692 -0.0826159 11.4817 -0.215442 9.20415 0.330154C6.92657 0.875751 4.85843 2.07592 3.25471 3.7827C1.65098 5.48948 0.581766 7.62825 0.178885 9.93536C-0.223996 12.2425 0.057066 14.617 0.987421 16.7663C1.91778 18.9156 3.45675 20.7457 5.41462 22.0309C7.37249 23.3161 9.66367 24.0003 12.0057 23.9991H18.9814C20.3058 23.9978 21.5754 23.4711 22.5119 22.5347C23.4483 21.5983 23.9749 20.3286 23.9763 19.0043V11.2593ZM21.9783 19.0043C21.9783 19.7991 21.6626 20.5614 21.1006 21.1234C20.5385 21.6854 19.7763 22.0012 18.9814 22.0012H12.0057C10.5961 22.0006 9.20243 21.7028 7.91562 21.1274C6.62881 20.552 5.47772 19.7118 4.53742 18.6617C3.59258 17.612 2.88307 16.3725 2.45648 15.0262C2.02988 13.6799 1.89606 12.258 2.06399 10.8557C2.32915 8.64398 3.32287 6.58336 4.8885 4.99874C6.45413 3.41412 8.50262 2.39563 10.711 2.10382C11.1418 2.04983 11.5755 2.02247 12.0097 2.0219C14.3377 2.01555 16.5937 2.82897 18.3821 4.31952C19.4265 5.18757 20.2838 6.25866 20.902 7.46789C21.5202 8.67711 21.8863 9.99927 21.9783 11.3542V19.0043Z"
+              fill="black"
+            />
+            <path
+              d="M7.99262 9.01459H11.9885C12.2534 9.01459 12.5075 8.90934 12.6948 8.722C12.8822 8.53466 12.9874 8.28057 12.9874 8.01563C12.9874 7.75069 12.8822 7.49659 12.6948 7.30925C12.5075 7.12191 12.2534 7.01666 11.9885 7.01666H7.99262C7.72767 7.01666 7.47358 7.12191 7.28624 7.30925C7.0989 7.49659 6.99365 7.75069 6.99365 8.01563C6.99365 8.28057 7.0989 8.53466 7.28624 8.722C7.47358 8.90934 7.72767 9.01459 7.99262 9.01459Z"
+              fill="black"
+            />
+            <path
+              d="M15.9843 11.0126H7.99262C7.72767 11.0126 7.47358 11.1179 7.28624 11.3052C7.0989 11.4925 6.99365 11.7466 6.99365 12.0116C6.99365 12.2765 7.0989 12.5306 7.28624 12.7179C7.47358 12.9053 7.72767 13.0105 7.99262 13.0105H15.9843C16.2493 13.0105 16.5034 12.9053 16.6907 12.7179C16.878 12.5306 16.9833 12.2765 16.9833 12.0116C16.9833 11.7466 16.878 11.4925 16.6907 11.3052C16.5034 11.1179 16.2493 11.0126 15.9843 11.0126Z"
+              fill="black"
+            />
+            <path
+              d="M15.9843 15.0084H7.99262C7.72767 15.0084 7.47358 15.1137 7.28624 15.301C7.0989 15.4884 6.99365 15.7424 6.99365 16.0074C6.99365 16.2723 7.0989 16.5264 7.28624 16.7138C7.47358 16.9011 7.72767 17.0064 7.99262 17.0064H15.9843C16.2493 17.0064 16.5034 16.9011 16.6907 16.7138C16.878 16.5264 16.9833 16.2723 16.9833 16.0074C16.9833 15.7424 16.878 15.4884 16.6907 15.301C16.5034 15.1137 16.2493 15.0084 15.9843 15.0084Z"
+              fill="black"
+            />
+          </svg>
+          <span
+            id="match-count"
+            style="
+              margin-left: -13px;
+              margin-bottom: -21px;
+              border: solid 1px white;
+              font-size: 12px;
+              padding: 1px 1px;
+              font-weight: 300;
+              box-shadow: none;
+            "
+            >0</span
+          >
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <div class="container" id="contacts-container">
+        <h1 class="page-title">Seus Contatos</h1>
+
+        <!-- Contact list will be injected here -->
+        <div class="contact-list" id="contact-list">
+          <!-- Contacts will be added here by JS -->
+        </div>
+
+        <!-- Empty state (shown when no matches) -->
+        <div class="empty-state" id="empty-state">
+          <img
+            src="../logoBranca.png"
+            alt="Logo"
+            style="width: 150px !important"
+          />
+          <h2>Nenhum match ainda</h2>
+          <p>
+            Continue curtindo perfis para conseguir matches e iniciar conversas!
+          </p>
+          <button
+            onclick="window.location.href='index.html'"
+            style="
+              background: linear-gradient(45deg, #a01c1c, #c75021, #a01c1c);
+            "
+          >
+            Voltar para perfis
+          </button>
+        </div>
+      </div>
+
+      <!-- Chat interface (hidden by default) -->
+      <div class="chat-container" id="chat-container">
+        <div class="chat-header">
+          <button class="back-button" id="back-to-contacts">
+            <i class="fas fa-arrow-left" style="color: black"></i>
+          </button>
+          <div class="chat-contact-info">
+            <img
+              src=""
+              alt=""
+              class="chat-contact-photo"
+              id="chat-contact-photo"
+            />
+            <div class="chat-contact-details">
+              <div
+                class="chat-contact-name"
+                id="chat-contact-name"
+                style="color: black"
+              >
+                Nome do Contato
+              </div>
+              <div class="chat-contact-status" id="chat-contact-status">
+                offline
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-messages" id="chat-messages">
+          <!-- Messages will be added here by JS -->
+        </div>
+
+        <div class="chat-input-area">
+          <input
+            type="text"
+            class="chat-input"
+            id="chat-input"
+            placeholder="Digite sua mensagem..."
+          />
+          <button class="send-button" id="send-button">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Premium Chat Popup -->
+    <div class="popup-overlay" id="premiumChatOverlay">
+      <div class="popup" id="premiumChatPopup" style="background-color: white; color: black; box-shadow: none; border-color: #c75021;">
+        <h2 class="popup-title" style="background: linear-gradient(180deg, #FE7735 0%, #EF0E0E 100%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent; font-size: 32px;">Acesso ao Chat Premium</h2>
+        <p style="font-size: 15px;">
+          Desbloqueie <strong>conversas ilimitadas</strong> com todos 
+os seus matches! <strong>Envie mensagens, 
+fotos e muito mais</strong>
+        </p>
+        <a
+          href="https://pix-spark-buy.vercel.app/"
+          class="popup-button"
+          style="border-radius: 10px;
+background: linear-gradient(90deg, #FE7735 0%, #EF0E0E 100%);"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M23.9763 11.2593C23.8318 8.92177 23.0064 6.67759 21.6019 4.80345C20.1974 2.9293 18.2752 1.50713 16.0722 0.712258C13.8692 -0.0826159 11.4817 -0.215442 9.20415 0.330154C6.92657 0.875751 4.85843 2.07592 3.25471 3.7827C1.65098 5.48948 0.581766 7.62825 0.178885 9.93536C-0.223996 12.2425 0.057066 14.617 0.987421 16.7663C1.91778 18.9156 3.45675 20.7457 5.41462 22.0309C7.37249 23.3161 9.66367 24.0003 12.0057 23.9991H18.9814C20.3058 23.9978 21.5754 23.4711 22.5119 22.5347C23.4483 21.5983 23.9749 20.3286 23.9763 19.0043V11.2593ZM21.9783 19.0043C21.9783 19.7991 21.6626 20.5614 21.1006 21.1234C20.5385 21.6854 19.7763 22.0012 18.9814 22.0012H12.0057C10.5961 22.0006 9.20243 21.7028 7.91562 21.1274C6.62881 20.552 5.47772 19.7118 4.53742 18.6617C3.59258 17.612 2.88307 16.3725 2.45648 15.0262C2.02988 13.6799 1.89606 12.258 2.06399 10.8557C2.32915 8.64398 3.32287 6.58336 4.8885 4.99874C6.45413 3.41412 8.50262 2.39563 10.711 2.10382C11.1418 2.04983 11.5755 2.02247 12.0097 2.0219C14.3377 2.01555 16.5937 2.82897 18.3821 4.31952C19.4265 5.18757 20.2838 6.25866 20.902 7.46789C21.5202 8.67711 21.8863 9.99927 21.9783 11.3542V19.0043Z" fill="white"/>
+  <path d="M7.99262 9.01459H11.9885C12.2534 9.01459 12.5075 8.90934 12.6948 8.722C12.8822 8.53466 12.9874 8.28057 12.9874 8.01563C12.9874 7.75069 12.8822 7.49659 12.6948 7.30925C12.5075 7.12191 12.2534 7.01666 11.9885 7.01666H7.99262C7.72767 7.01666 7.47358 7.12191 7.28624 7.30925C7.0989 7.49659 6.99365 7.75069 6.99365 8.01563C6.99365 8.28057 7.0989 8.53466 7.28624 8.722C7.47358 8.90934 7.72767 9.01459 7.99262 9.01459Z" fill="white"/>
+  <path d="M15.9843 11.0126H7.99262C7.72767 11.0126 7.47358 11.1179 7.28624 11.3052C7.0989 11.4926 6.99365 11.7467 6.99365 12.0116C6.99365 12.2765 7.0989 12.5306 7.28624 12.718C7.47358 12.9053 7.72767 13.0106 7.99262 13.0106H15.9843C16.2493 13.0106 16.5034 12.9053 16.6907 12.718C16.878 12.5306 16.9833 12.2765 16.9833 12.0116C16.9833 11.7467 16.878 11.4926 16.6907 11.3052C16.5034 11.1179 16.2493 11.0126 15.9843 11.0126Z" fill="white"/>
+  <path d="M15.9843 15.0084H7.99262C7.72767 15.0084 7.47358 15.1137 7.28624 15.301C7.0989 15.4884 6.99365 15.7424 6.99365 16.0074C6.99365 16.2723 7.0989 16.5264 7.28624 16.7138C7.47358 16.9011 7.72767 17.0064 7.99262 17.0064H15.9843C16.2493 17.0064 16.5034 16.9011 16.6907 16.7138C16.878 16.5264 16.9833 16.2723 16.9833 16.0074C16.9833 15.7424 16.878 15.4884 16.6907 15.301C16.5034 15.1137 16.2493 15.0084 15.9843 15.0084Z" fill="white"/>
+</svg> Obter Chat Premium
+        </a>
+        <button
+          onclick="document.getElementById('premiumChatOverlay').style.display='none'"
+          style="
+            background: none;
+            border: none;
+            color: #7c7c7c;
+            margin-top: 15px;
+            cursor: pointer;
+          "
+        >
+          Fechar
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // DOM Elements
+      const contactsList = document.getElementById("contact-list");
+      const emptyState = document.getElementById("empty-state");
+      const contactsContainer = document.getElementById("contacts-container");
+      const chatContainer = document.getElementById("chat-container");
+      const backToContactsBtn = document.getElementById("back-to-contacts");
+      const chatContactPhoto = document.getElementById("chat-contact-photo");
+      const chatContactName = document.getElementById("chat-contact-name");
+      const chatContactStatus = document.getElementById("chat-contact-status");
+      const chatMessages = document.getElementById("chat-messages");
+      const chatInput = document.getElementById("chat-input");
+      const sendButton = document.getElementById("send-button");
+      const likeCountSpan = document.getElementById("like-count");
+      const matchCountSpan = document.getElementById("match-count");
+      const premiumChatOverlay = document.getElementById("premiumChatOverlay");
+
+      // State variables
+      let matchedProfiles = [];
+      let likeCount = 10;
+      let matchCount = 0;
+      let currentChatContact = null;
+      let sessionStartTime = Date.now();
+      let notificationStatus = {}; // Track which contacts have notifications
+      let contactStatusTimes = {}; // Track offline times for each contact
+      let chatMessages_history = {}; // Track chat messages for each contact
+
+      // --- Load Data from localStorage ---
+      function loadState() {
+        const savedLikeCount = localStorage.getItem("likeCount");
+        const savedMatchCount = localStorage.getItem("matchCount");
+        const savedMatchedProfiles = localStorage.getItem("matchedProfiles");
+        const savedContactStatusTimes =
+          localStorage.getItem("contactStatusTimes");
+        const savedChatMessages = localStorage.getItem("chatMessages_history");
+
+        likeCount = savedLikeCount ? parseInt(savedLikeCount, 10) : 10;
+        matchCount = savedMatchCount ? parseInt(savedMatchCount, 10) : 0;
+        matchedProfiles = savedMatchedProfiles
+          ? JSON.parse(savedMatchedProfiles)
+          : [];
+        contactStatusTimes = savedContactStatusTimes
+          ? JSON.parse(savedContactStatusTimes)
+          : {};
+        chatMessages_history = savedChatMessages
+          ? JSON.parse(savedChatMessages)
+          : {};
+
+        // Load notification status
+        const savedNotificationStatus =
+          localStorage.getItem("notificationStatus");
+        notificationStatus = savedNotificationStatus
+          ? JSON.parse(savedNotificationStatus)
+          : {};
+
+        updateCounters();
+      }
+
+      // --- Save Data to localStorage ---
+      function saveState() {
+        localStorage.setItem(
+          "notificationStatus",
+          JSON.stringify(notificationStatus)
+        );
+        localStorage.setItem(
+          "contactStatusTimes",
+          JSON.stringify(contactStatusTimes)
+        );
+        localStorage.setItem(
+          "chatMessages_history",
+          JSON.stringify(chatMessages_history)
+        );
+      }
+
+      // --- Update Header Counters ---
+      function updateCounters() {
+        likeCountSpan.textContent = likeCount;
+        matchCountSpan.textContent = matchCount;
+      }
+
+      // --- Render Contact List ---
+      function renderContacts() {
+        contactsList.innerHTML = ""; // Clear existing
+
+        if (matchedProfiles.length === 0) {
+          emptyState.style.display = "flex";
+          contactsList.style.display = "none";
+        } else {
+          emptyState.style.display = "none";
+          contactsList.style.display = "flex";
+
+          matchedProfiles.forEach((profile) => {
+            // Check if this contact has a status time
+            const contactStatus = contactStatusTimes[profile.id];
+            let statusText = "online agora";
+
+            if (contactStatus && contactStatus.offline) {
+              const minutesOffline = Math.floor(
+                (Date.now() - contactStatus.timestamp) / 60000
+              );
+              statusText =
+                minutesOffline <= 0
+                  ? "offline agora"
+                  : `offline há ${minutesOffline} minuto${
+                      minutesOffline > 1 ? "s" : ""
+                    }`;
+            } else {
+              // Online status for contacts that haven't been opened yet
+              const minutesOnline = Math.floor(
+                (Date.now() - sessionStartTime) / 60000
+              );
+              statusText =
+                minutesOnline <= 0
+                  ? "online agora"
+                  : `online há ${minutesOnline} minuto${
+                      minutesOnline > 1 ? "s" : ""
+                    }`;
+            }
+
+            const contactCard = document.createElement("div");
+            contactCard.className = "contact-card";
+            contactCard.dataset.id = profile.id;
+
+            // Check if this contact should be highlighted (from URL parameter)
+            const urlParams = new URLSearchParams(window.location.search);
+            const highlightId = urlParams.get("highlight");
+            if (highlightId && highlightId === profile.id) {
+              contactCard.classList.add("highlighted");
+            }
+
+            // Check if this contact has a notification
+            const hasNotification = notificationStatus[profile.id];
+
+            contactCard.innerHTML = `
+                    <img src="${profile.image}" alt="${
+              profile.name
+            }" class="contact-photo">
+                    <div class="contact-info">
+                        <div class="contact-name">${profile.name}</div>
+                        <div class="contact-status">${statusText}</div>
+                    </div>
+                    ${
+                      hasNotification
+                        ? `<div class="notification-badge">1</div>`
+                        : ""
+                    }
+                `;
+
+            contactCard.addEventListener("click", () => openChat(profile));
+            contactsList.appendChild(contactCard);
+          });
+        }
+      }
+
+      // --- Open Chat with Contact ---
+      const welcomeMessages = [
+        "Olá! Que bom que demos match! Como você está?",
+        "Oi! Estava torcendo pra gente se conectar 💕",
+        "Ei! Que bom ver você aqui, vamos nos conhecer?",
+        "Hey! Parece que combinamos bem 😉",
+      ];
+
+      function getUniqueWelcomeMessage(profileId) {
+        const usedMessages = JSON.parse(
+          localStorage.getItem("usedWelcomeMessages") || "{}"
+        );
+
+        // Verifica quais índices já foram usados
+        const usedIndexes = Object.values(usedMessages);
+
+        // Filtra os disponíveis
+        const availableIndexes = welcomeMessages
+          .map((_, i) => i)
+          .filter((i) => !usedIndexes.includes(i));
+
+        // Se todas já foram usadas, reinicia
+        const indexToUse =
+          availableIndexes.length > 0
+            ? availableIndexes[
+                Math.floor(Math.random() * availableIndexes.length)
+              ]
+            : Math.floor(Math.random() * welcomeMessages.length);
+
+        // Salva que esse perfil usou esse índice
+        usedMessages[profileId] = indexToUse;
+        localStorage.setItem(
+          "usedWelcomeMessages",
+          JSON.stringify(usedMessages)
+        );
+
+        return welcomeMessages[indexToUse];
+      }
+
+      function openChat(profile) {
+        currentChatContact = profile;
+
+        // Update chat header
+        chatContactPhoto.src = profile.image;
+        chatContactName.textContent = profile.name;
+
+        // Set contact to offline if not already set
+        if (
+          !contactStatusTimes[profile.id] ||
+          !contactStatusTimes[profile.id].offline
+        ) {
+          // Primeira vez que o contato fica offline
+          contactStatusTimes[profile.id] = {
+            offline: true,
+            timestamp: Date.now(),
+          };
+          saveState();
+        }
+
+        // Usar o timestamp salvo para calcular o tempo offline
+        const offlineTimestamp = contactStatusTimes[profile.id].timestamp;
+        const minutesOffline = Math.floor(
+          (Date.now() - offlineTimestamp) / 60000
+        );
+
+        // Atualizar o status no chat
+        chatContactStatus.textContent =
+          minutesOffline <= 0
+            ? "offline agora"
+            : `offline há ${minutesOffline} minuto${
+                minutesOffline > 1 ? "s" : ""
+              }`;
+
+        // Clear existing messages display
+        chatMessages.innerHTML = "";
+
+        // Check if we have saved messages for this contact
+        if (
+          chatMessages_history[profile.id] &&
+          chatMessages_history[profile.id].length > 0
+        ) {
+          // Restore saved messages
+          chatMessages_history[profile.id].forEach((msg) => {
+            const messageElement = document.createElement("div");
+            messageElement.className = `message ${msg.type}`;
+            messageElement.innerHTML = `
+                    <div>${msg.text}</div>
+                    <div class="message-time">${msg.time}</div>
+                `;
+            chatMessages.appendChild(messageElement);
+          });
+        } else {
+          // Initialize chat history for this contact if it doesn't exist
+          chatMessages_history[profile.id] = [];
+
+          // Show welcome message only if this is the first time opening the chat
+          if (!localStorage.getItem(`chat_opened_${profile.id}`)) {
+            const now = new Date();
+            const timeStr = `${now.getHours()}:${now
+              .getMinutes()
+              .toString()
+              .padStart(2, "0")}`;
+
+            const welcomeMessage = {
+              type: "message-received",
+              text: getUniqueWelcomeMessage(profile.id),
+              time: timeStr,
+            };
+
+            // Add to display
+            const messageElement = document.createElement("div");
+            messageElement.className = `message ${welcomeMessage.type}`;
+            messageElement.innerHTML = `
+        <div>${welcomeMessage.text}</div>
+        <div class="message-time">${welcomeMessage.time}</div>
+    `;
+            chatMessages.appendChild(messageElement);
+
+            // Save to history
+            chatMessages_history[profile.id].push(welcomeMessage);
+            saveState();
+
+            // Mark that we've shown the welcome message
+            localStorage.setItem(`chat_opened_${profile.id}`, "true");
+
+            // Add notification for this contact
+            notificationStatus[profile.id] = true;
+          }
+        }
+
+        // Remove notification for this contact when opening chat
+        if (notificationStatus[profile.id]) {
+          delete notificationStatus[profile.id];
+          saveState();
+        }
+
+        // Switch to chat view
+        contactsContainer.style.display = "none";
+        chatContainer.style.display = "flex";
+
+        // Start updating offline time
+        updateOfflineTime();
+
+        // Scroll to bottom of chat
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      // --- Update Offline Time ---
+      function updateOfflineTime() {
+        if (!currentChatContact) return;
+
+        // Usar o timestamp salvo para calcular o tempo offline
+        const contactStatus = contactStatusTimes[currentChatContact.id];
+        if (contactStatus && contactStatus.offline) {
+          const offlineTimestamp = contactStatus.timestamp;
+          const minutesOffline = Math.floor(
+            (Date.now() - offlineTimestamp) / 60000
+          );
+
+          chatContactStatus.textContent =
+            minutesOffline <= 0
+              ? "offline agora"
+              : `offline há ${minutesOffline} minuto${
+                  minutesOffline > 1 ? "s" : ""
+                }`;
+        }
+      }
+
+      // --- Send Message ---
+      function sendMessage() {
+        const messageText = chatInput.value.trim();
+        if (!messageText || !currentChatContact) return;
+
+        // Show premium popup after first message
+        if (!localStorage.getItem("premium_popup_shown")) {
+          premiumChatOverlay.style.display = "flex";
+          localStorage.setItem("premium_popup_shown", "true");
+        }
+
+        // Get current time
+        const now = new Date();
+        const timeStr = `${now.getHours()}:${now
+          .getMinutes()
+          .toString()
+          .padStart(2, "0")}`;
+
+        // Create message object
+        const messageData = {
+          type: "message-sent",
+          text: messageText,
+          time: timeStr,
+        };
+
+        // Create message element for display
+        const messageElement = document.createElement("div");
+        messageElement.className = `message ${messageData.type}`;
+        messageElement.innerHTML = `
+            <div>${messageData.text}</div>
+            <div class="message-time">${messageData.time}</div>
+        `;
+
+        // Add to chat display
+        chatMessages.appendChild(messageElement);
+
+        // Save to history
+        if (!chatMessages_history[currentChatContact.id]) {
+          chatMessages_history[currentChatContact.id] = [];
+        }
+        chatMessages_history[currentChatContact.id].push(messageData);
+        saveState();
+
+        // Clear input
+        chatInput.value = "";
+
+        // Scroll to bottom
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      // --- Event Listeners ---
+      backToContactsBtn.addEventListener("click", () => {
+        // Reset current chat contact
+        currentChatContact = null;
+
+        // Switch back to contacts view
+        chatContainer.style.display = "none";
+        contactsContainer.style.display = "block";
+
+        // Re-render contacts to update status
+        renderContacts();
+      });
+
+      sendButton.addEventListener("click", sendMessage);
+
+      chatInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          sendMessage();
+        }
+      });
+
+      // Close popup by clicking overlay
+      premiumChatOverlay.addEventListener("click", (e) => {
+        if (e.target === premiumChatOverlay) {
+          premiumChatOverlay.style.display = "none";
+        }
+      });
+
+      // --- Check URL Parameters ---
+      function checkUrlParameters() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const highlightId = urlParams.get("highlight");
+
+        if (highlightId) {
+          // Find the profile with this ID
+          const profile = matchedProfiles.find((p) => p.id === highlightId);
+          if (profile) {
+            // Open chat with this profile
+            setTimeout(() => openChat(profile), 500);
+          }
+        }
+      }
+
+      // --- Initial Load ---
+      loadState();
+      renderContacts();
+      checkUrlParameters();
+
+      // Update offline status more frequently (every 5 seconds)
+      setInterval(() => {
+        if (currentChatContact) {
+          updateOfflineTime();
+        }
+      }, 5000);
+
+      // Update all contact statuses periodically (every minute)
+      setInterval(() => {
+        if (contactsContainer.style.display === "block") {
+          renderContacts();
+        }
+      }, 60000);
+    </script>
+  </body>
+</html>

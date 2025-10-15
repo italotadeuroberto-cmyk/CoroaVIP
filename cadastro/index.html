@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <script
+  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+  data-utmify-prevent-xcod-sck
+  data-utmify-prevent-subids
+  async
+  defer
+></script>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Minha Coroa</title>
+
+    <style>
+     html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: linear-gradient(to top, #A01C1C, #C75021, #FE7735);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 0;
+    padding: 0px 20px;
+}
+
+.input-container input :focus{
+            border: 2px solid #FE7735 !important;
+        }
+
+        .input-container input :hover{
+            border: 2px solid #FE7735 !important;
+        }
+    </style>
+
+    <script src="../utm.js"></script>
+</head>
+<body>
+    <div style="background-color: white; border-radius: 25px; padding: 25px; text-align: center; width: 100%;">
+        <img src="logoQuente.svg" alt="" width="120px">
+        <h1 style="margin: 0px; font-size: 25px;">Cadastro</h1>
+        <p style="margin: 0px; font-size: 10px; padding: 0px 25px; color: #999999; margin-top: -5px; margin-bottom: 20px;">Não vamos contar pra ninguém :)</p>
+
+        <!-- <input type="text" style="border: solid 1px #c9c9c9; border-radius: 0px 10px 10px 0px; border-left: solid 3px #8319C1; padding: 5px; width: 70%; color: #999999; margin-bottom: 10px;" placeholder="Usuário"><br>
+        <input type="text" style="border: solid 1px #c9c9c9; border-radius: 0px 10px 10px 0px; border-left: solid 3px #8319C1; padding: 5px; width: 70%; color: #999999; margin-bottom: 10px;" placeholder="E-mail"><br>
+        <input type="text" style="border: solid 1px #c9c9c9; border-radius: 0px 10px 10px 0px; border-left: solid 3px #8319C1; padding: 5px; width: 70%; color: #999999; margin-bottom: 10px;" placeholder="Chave pix"><br>
+        <input type="text" style="border: solid 1px #c9c9c9; border-radius: 0px 10px 10px 0px; border-left: solid 3px #8319C1; padding: 5px; width: 70%; color: #999999; margin-bottom: 10px;" placeholder="Senha"><br>
+        <input type="text" style="border: solid 1px #c9c9c9; border-radius: 0px 10px 10px 0px; border-left: solid 3px #8319C1; padding: 5px; width: 70%; color: #999999; margin-bottom: 10px;" placeholder="Confirmar senha"><br>
+         -->
+         <div class="input-container">
+         <input type="text" id="usuario" placeholder="Usuário">
+     </div>
+ 
+     <div class="input-container">
+         <input type="email" id="email" placeholder="E-mail">
+     </div>
+ 
+     <div class="input-container">
+         <input type="text" id="pix" placeholder="Chave Pix">
+     </div>
+ 
+     <div class="input-container">
+         <input type="password" id="senha" placeholder="Senha">
+     </div>
+ 
+     <div class="input-container">
+         <input type="password" id="confirmar-senha" placeholder="Confirmar senha">
+     </div>
+ 
+    <button id="cadastrar" disabled style="background: linear-gradient(to right, #FE7735, #EF0E0E); color: white; padding: 10px 70px; border: none; border-radius: 20px; font-weight: bold; margin-top: 15px; margin-bottom: 10px; font-size: 18px;">Cadastrar</button>
+
+    <script>
+        const usuario = document.getElementById('usuario');
+        const email = document.getElementById('email');
+        const pix = document.getElementById('pix');
+        const senha = document.getElementById('senha');
+        const confirmarSenha = document.getElementById('confirmar-senha');
+        const botao = document.getElementById('cadastrar');
+    
+        function validarFormulario() {
+            let valido = true;
+            [usuario, email, pix, senha, confirmarSenha].forEach(input => {
+                if (!input.value.trim()) {
+                    input.classList.add('erro');
+                    valido = false;
+                } else {
+                    input.classList.remove('erro');
+                }
+            });
+    
+            if (senha.value !== confirmarSenha.value) {
+                senha.classList.add('erro');
+                confirmarSenha.classList.add('erro');
+                valido = false;
+            } else {
+                senha.classList.remove('erro');
+                confirmarSenha.classList.remove('erro');
+            }
+    
+            if (valido) {
+                botao.classList.add('habilitado');
+                botao.disabled = false;
+            } else {
+                botao.classList.remove('habilitado');
+                botao.disabled = true;
+            }
+        }
+    
+        [usuario, email, pix, senha, confirmarSenha].forEach(input => {
+            input.addEventListener('input', validarFormulario);
+        });
+    
+        document.addEventListener('DOMContentLoaded', () => {
+    const botao = document.querySelector('#cadastrar');
+    botao.addEventListener('click', () => {
+      if (!botao.disabled) {
+        // Obter os parâmetros UTM da URL atual
+        const url = "../adicionaFoto/index.html";
+        console.log('Redirecionando para:', url);
+        
+        // Obter os parâmetros UTM da URL atual
+        const urlParams = new URLSearchParams(window.location.search);
+        const utmTags = [
+            'utm_source',
+            'utm_medium',
+            'utm_campaign',
+            'utm_term',
+            'utm_content'
+        ];
+        
+        // Criar nova URL com os parâmetros UTM
+        let finalUrl = url;
+        let hasUtm = false;
+        
+        // Adicionar ? se não existir na URL
+        if (!finalUrl.includes('?')) {
+            finalUrl += '?';
+        } else {
+            finalUrl += '&';
+        }
+        
+        // Adicionar os parâmetros UTM
+        utmTags.forEach(tag => {
+            const value = urlParams.get(tag);
+            if (value) {
+                finalUrl += `${tag}=${encodeURIComponent(value)}&`;
+                // Salvar no sessionStorage também
+                sessionStorage.setItem(tag, value);
+                hasUtm = true;
+            } else {
+                // Tentar recuperar do sessionStorage
+                const storedValue = sessionStorage.getItem(tag);
+                if (storedValue) {
+                    finalUrl += `${tag}=${encodeURIComponent(storedValue)}&`;
+                    hasUtm = true;
+                }
+            }
+        });
+        
+        // Remover o último & se existir
+        if (finalUrl.endsWith('&')) {
+            finalUrl = finalUrl.slice(0, -1);
+        }
+        // Remover o ? se não houver parâmetros
+        if (finalUrl.endsWith('?')) {
+            finalUrl = finalUrl.slice(0, -1);
+        }
+        
+        console.log('URL final com parâmetros UTM:', finalUrl);
+        window.location.href = finalUrl;
+      }
+    });
+  });
+    </script>
+    
+
+        <style>
+        /* Estilização geral dos inputs */
+        .input-container {
+            margin-bottom: 10px;
+            position: relative;
+            padding: 0px 20px;
+        }
+        
+        .input-container input {
+            width: 80%;
+            padding: 10px 10px 10px 40px; /* Espaço para o ícone */
+            font-size: 16px;
+            border: solid 1px #c9c9c9; border-radius: 0px 20px 20px 0px; border-left: solid 3px #ff8447;
+            color: #333;
+            font-family: 'Poppins', sans-serif;
+            background: #fff;
+            background-repeat: no-repeat;
+            background-position: 10px center;
+            background-size: 20px;
+            
+        }
+
+        
+        
+        
+        /* Ícones específicos para cada input usando IDs */
+        #usuario {
+            background-image: url('user.png'); /* Ícone de usuário */
+        }
+        
+        #email {
+            background-image: url('email.png'); /* Ícone de e-mail */
+        }
+        
+        #pix {
+            background-image: url('pix-svgrepo-com.svg'); /* Ícone de chave Pix */
+        }
+        
+        #senha {
+            background-image: url('padlock.png'); /* Ícone de senha */
+        }
+        
+        #confirmar-senha {
+            background-image: url('padlock.png'); /* Ícone de confirmar senha */
+        }
+
+        input.erro {
+            border-color: red;
+            background-color: #ffe6e6;
+        }
+
+        button.habilitado {
+            opacity: 1;
+            cursor: pointer;
+        }
+
+        </style>
+        
+
+        
+        <br>
+     </div>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html lang="pt">
     <head>
         <title>Página padrão</title>
-        <link rel="icon" type="image/x-icon" href="https://hpanel.hostinger.com/favicons/hostinger.png">
+        <link rel="icon" type="image/x-icon" href="logoBranca.png">
         <meta charset="utf-8">
         <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
         <meta content="Página padrão" name="description">
